@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/* LABERINTO */
+
+.titulo-nivel{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    color:white;
+    font-size: 2em;
+    margin: .4em;
+}
+
+
+.contenedor-laberinto{
+    height: 100vh;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.laberinto{
+    position: relative;
+}
+
+.pared{
+    position: absolute;
+    background: rgb(255, 64, 0);
+}
+
+
+/* PERSONAJE */
+
+.personaje{
+    position: absolute;
+    width: .8em;
+    height: .8em;
+    border-radius: 100%;
+    background-color: yellow;
+    transition: transform 100ms linear;
+
+}
