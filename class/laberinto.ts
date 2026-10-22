@@ -1,20 +1,22 @@
 export class Laberinto {
 
     /*  REQUISITOS DEL LABERINTO  */
-    private divlaberinto: HTMLElement;
+    private divLaberinto: HTMLElement;
+    private limitePared: HTMLElement[];
     private mapa: string[][];
 
     /* PROPIEDADES DEL LABERINTO*/
     private tamanoCelda = 25;
 
     constructor(mapa: string[][]) {
-        this.divlaberinto = document.getElementById("laberinto")!;
+        this.limitePared = [];
+        this.divLaberinto = document.getElementById("laberinto")!;
         this.mapa = mapa;
+
     }
 
 
     construirMapa() {
-
         //Adapta las dimensiones del nivel a la pantalla.
         this.ajustarTamanioMapa(this.mapa);
 
@@ -29,16 +31,28 @@ export class Laberinto {
                     pared.style.top = indiceFila * this.tamanoCelda + "px"
                     pared.style.width = this.tamanoCelda + "px";
                     pared.style.height = this.tamanoCelda + "px";
-                    this.divlaberinto.appendChild(pared); // Agrego al HTML cada div creado en cada #.
-
+                    this.divLaberinto.appendChild(pared); // Agrego al HTML cada div creado en cada #.
+                    this.limitePared.push(pared); //Array para obtener las paredes del laberinto.
                 }
             })
         })
     }
 
+
+    getParedLimites(){
+        let paredesLimites: DOMRect[] = this.limitePared.map((p) => {
+            return p.getBoundingClientRect();
+        })
+        return paredesLimites;
+    }
+
     ajustarTamanioMapa(mapa: string[][]) {
-        this.divlaberinto.style.width = mapa[0]!.length * this.tamanoCelda + "px";
-        this.divlaberinto.style.height = mapa.length * this.tamanoCelda + "px";
+        this.divLaberinto.style.width = mapa[0]!.length * this.tamanoCelda + "px";
+        this.divLaberinto.style.height = mapa.length * this.tamanoCelda + "px";
+    }
+
+    getDivLaberinto(){
+        return this.divLaberinto;
     }
 
 }

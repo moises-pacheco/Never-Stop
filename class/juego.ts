@@ -1,11 +1,16 @@
-import { Jugador } from "./jugador.js";
-import { Laberinto } from "./laberinto.js"
+import { Jugador } from "./jugador"
 
-
-
-document.addEventListener("DOMContentLoaded", ()=> {
-
-
-
-
-}) 
+export function iniciarJuego(jugador: Jugador, limites: DOMRect[], inicio: {x:number,y:number}){
+    console.log("ENTRA");
+    let ubicacionJugador = jugador.getDivJugador().getBoundingClientRect();
+    limites.forEach((pared) => {
+        if(ubicacionJugador.left < pared.left
+            && ubicacionJugador.right > pared.right 
+            && ubicacionJugador.bottom < pared.bottom
+            && ubicacionJugador.top > pared.top
+        ){
+            jugador.setReseteoPosicion(inicio.x, inicio.y);
+            console.log("ENTRO");
+        }
+    })
+}

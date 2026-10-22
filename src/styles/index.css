@@ -47,7 +47,7 @@
     height: .8em;
     border-radius: 100%;
     background-color: yellow;
-    transition: transform 100ms linear;
+    transition: transform 75ms linear;
 
 }
 

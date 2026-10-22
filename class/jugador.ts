@@ -1,7 +1,3 @@
-import { Laberinto } from "./laberinto";
-
-
-
 export class Jugador {
 
     private divJugador: HTMLElement;
@@ -9,60 +5,63 @@ export class Jugador {
     private velovidadIntervalo: number;
     private posicionX: number;
     private posicionY: number;
+    private intervalo: number | undefined;
 
-    constructor() {
+    constructor(x: number, y: number) {
         this.velovidadIntervalo = 75;
-        this.posicionX = 30;
-        this.posicionY = 40;
+        this.posicionX = x;
+        this.posicionY = y;
         this.velocidad = 20;
-        
+
 
         this.divJugador = document.createElement("div");
-        this.crearPersonaje();
+        this.divJugador.classList.add("personaje");
+        this.actualizarPosicion();
     }
 
     detectarTecla() {
-        let intervalo = setInterval(() => { });
-
-
         document.addEventListener("keydown", (event) => {
-            clearInterval(intervalo);
-            if (event.key === "ArrowUp") {
+            if (event.repeat) return;
+            if (!event.key.startsWith("Arrow")) return;
 
-                intervalo = setInterval(() => {
+            event.preventDefault();
+            clearInterval(this.intervalo);
+            if (event.key === "ArrowUp") {
+                this.getUbicacion();
+
+                this.intervalo = setInterval(() => {
                     this.posicionY -= this.velocidad;
 
-                    console.log(this.posicionY)
-                    this.mover();
+                    this.actualizarPosicion();
 
                 }, this.velovidadIntervalo)
 
-            } else if (event.key == "ArrowDown") {
-                clearInterval(intervalo);
-
-
-                intervalo = setInterval(() => {
+            } else if (event.key === "ArrowDown") {
+                this.getUbicacion();
+                this.intervalo = setInterval(() => {
                     this.posicionY += this.velocidad;
-                    console.log(this.posicionY)
-                    this.mover();
+                    this.actualizarPosicion();
+
 
                 }, this.velovidadIntervalo)
-            } else if (event.key == "ArrowLeft") {
+            } else if (event.key === "ArrowLeft") {
+                this.getUbicacion();
 
 
-                intervalo = setInterval(() => {
+                this.intervalo = setInterval(() => {
                     this.posicionX -= this.velocidad;
-                    console.log(this.posicionY)
-                    this.mover();
+                    this.actualizarPosicion();
+
                 }, this.velovidadIntervalo)
 
-            } else if (event.key == "ArrowRight") {
- 
+            } else if (event.key === "ArrowRight") {
 
-                intervalo = setInterval(() => {
+                this.getUbicacion();
+
+                this.intervalo = setInterval(() => {
                     this.posicionX += this.velocidad;
-                    console.log(this.posicionY)
-                    this.mover();
+                    this.actualizarPosicion();
+
                 }, this.velovidadIntervalo)
 
 
@@ -72,21 +71,22 @@ export class Jugador {
     }
 
 
-    mover() {
+    actualizarPosicion() {
         this.divJugador.style.transform = `translate(${this.posicionX + "px"},${this.posicionY + "px"})`
     }
 
-    crearPersonaje() {
-        this.divJugador.classList.add("personaje");
-        this.divJugador.style.transform = `translate(${this.posicionX + "px"},${this.posicionY + "px"})`
-    }
-
-    getDivJugador(){
+    getDivJugador() {
         return this.divJugador;
     }
 
-    getUbicacion(){
-        return {x: this.posicionX, y:this.posicionY};
+    getUbicacion() {
+        let ubicacionJugador = this.divJugador.getBoundingClientRect();
+        console.log(`Left: ${ubicacionJugador.left}, Right:${ubicacionJugador.right} , Bottom: ${ubicacionJugador.bottom}, Top: ${ubicacionJugador.top}`)
+    }
+
+
+    setReseteoPosicion(x: number, y: number) {
+        this.divJugador.style.transform = `translate(${x + "px"},${y + "px"})`
     }
 
 }
