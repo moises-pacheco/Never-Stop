@@ -6,7 +6,7 @@ import { Laberinto } from "./laberinto.js"
 document.addEventListener("DOMContentLoaded", ()=> {
 
     const laberinto = new Laberinto();
-    laberinto.construirNivel(laberinto.getPrimerNivel());
+    laberinto.construirNivel(laberinto.getSegundoNivel());
 
 
     const jugador = new Jugador(laberinto);

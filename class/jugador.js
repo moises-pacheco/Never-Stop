@@ -3,10 +3,12 @@ export class Jugador {
     personaje;
     laberinto;
     velocidad;
+    velovidadIntervalo;
     posicionX;
     posicionY;
     constructor(laberintoDiv) {
         this.laberintoDiv = laberintoDiv;
+        this.velovidadIntervalo = 75;
         this.posicionX = 30;
         this.posicionY = 40;
         this.laberinto = laberintoDiv.getDivLaberinto();
@@ -25,31 +27,33 @@ export class Jugador {
         document.addEventListener("keydown", (event) => {
             clearInterval(intervalo);
             if (event.key === "ArrowUp") {
-                teclas = {
-                    ArrowUp: true,
-                    ArrowDown: false,
-                    ArrowLeft: false,
-                    ArrowRight: false
-                };
                 intervalo = setInterval(() => {
                     this.posicionY -= this.velocidad;
                     console.log(this.posicionY);
                     this.mover();
-                }, 100);
+                }, this.velovidadIntervalo);
             }
             else if (event.key == "ArrowDown") {
                 clearInterval(intervalo);
-                teclas = {
-                    ArrowUp: false,
-                    ArrowDown: true,
-                    ArrowLeft: false,
-                    ArrowRight: false
-                };
                 intervalo = setInterval(() => {
                     this.posicionY += this.velocidad;
                     console.log(this.posicionY);
                     this.mover();
-                }, 100);
+                }, this.velovidadIntervalo);
+            }
+            else if (event.key == "ArrowLeft") {
+                intervalo = setInterval(() => {
+                    this.posicionX -= this.velocidad;
+                    console.log(this.posicionY);
+                    this.mover();
+                }, this.velovidadIntervalo);
+            }
+            else if (event.key == "ArrowRight") {
+                intervalo = setInterval(() => {
+                    this.posicionX += this.velocidad;
+                    console.log(this.posicionY);
+                    this.mover();
+                }, this.velovidadIntervalo);
             }
         });
     }
