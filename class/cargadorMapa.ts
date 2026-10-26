@@ -4,7 +4,7 @@ interface Mapa {
     inicio: Inicio
 }
 
-type niveles = "Primer laberinto" | "Segundo laberinto" | "Tercer laberinto"
+export type niveles = "Primer laberinto" | "Segundo laberinto" | "Tercer laberinto" | "Cuarto laberinto";
 
 interface Laberintos {
     laberintos: Mapa[]

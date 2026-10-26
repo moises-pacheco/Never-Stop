@@ -15,6 +15,7 @@ export class Laberinto {
         this.divLaberinto = document.getElementById("laberinto")!;
         this.mapa = [];
 
+
     }
 
 
@@ -55,6 +56,21 @@ export class Laberinto {
 
     setMapa(mapa: string[][]) {
         this.mapa = mapa;
+    }
+
+    eliminarMapa(){
+        let paredes = this.divLaberinto.children;
+        Array.from(paredes).forEach((p) => {
+            p.remove();
+        })
+        console.log(paredes);
+
+    }
+
+    cambiarMapa(mapa:string[][]){
+        this.eliminarMapa();
+        this.setMapa(mapa);
+        this.construirMapa();
     }
 
 

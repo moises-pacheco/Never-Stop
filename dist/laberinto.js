@@ -45,6 +45,18 @@ export class Laberinto {
     setMapa(mapa) {
         this.mapa = mapa;
     }
+    eliminarMapa() {
+        let paredes = this.divLaberinto.children;
+        Array.from(paredes).forEach((p) => {
+            p.remove();
+        });
+        console.log(paredes);
+    }
+    cambiarMapa(mapa) {
+        this.eliminarMapa();
+        this.setMapa(mapa);
+        this.construirMapa();
+    }
     getParedLimites() {
         let paredesLimites = this.limitePared.map((p) => {
             return p.getBoundingClientRect();

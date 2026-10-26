@@ -6,7 +6,7 @@ export class Jugador {
     posicionY;
     intervalo;
     constructor() {
-        this.velovidadIntervalo = 75;
+        this.velovidadIntervalo = 90;
         this.posicionX = 0;
         this.posicionY = 0;
         this.velocidad = 20;
