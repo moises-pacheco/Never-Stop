@@ -5,16 +5,16 @@ export class Jugador {
     posicionX;
     posicionY;
     intervalo;
-    constructor(x, y) {
+    constructor() {
         this.velovidadIntervalo = 75;
-        this.posicionX = x;
-        this.posicionY = y;
+        this.posicionX = 0;
+        this.posicionY = 0;
         this.velocidad = 20;
         this.divJugador = document.createElement("div");
         this.divJugador.classList.add("personaje");
         this.actualizarPosicion();
     }
-    detectarTecla() {
+    detectarTecla(alMoverse) {
         document.addEventListener("keydown", (event) => {
             if (event.repeat)
                 return;
@@ -23,31 +23,31 @@ export class Jugador {
             event.preventDefault();
             clearInterval(this.intervalo);
             if (event.key === "ArrowUp") {
-                this.getUbicacion();
                 this.intervalo = setInterval(() => {
                     this.posicionY -= this.velocidad;
                     this.actualizarPosicion();
+                    alMoverse(this.intervalo);
                 }, this.velovidadIntervalo);
             }
             else if (event.key === "ArrowDown") {
-                this.getUbicacion();
                 this.intervalo = setInterval(() => {
                     this.posicionY += this.velocidad;
                     this.actualizarPosicion();
+                    alMoverse(this.intervalo);
                 }, this.velovidadIntervalo);
             }
             else if (event.key === "ArrowLeft") {
-                this.getUbicacion();
                 this.intervalo = setInterval(() => {
                     this.posicionX -= this.velocidad;
                     this.actualizarPosicion();
+                    alMoverse(this.intervalo);
                 }, this.velovidadIntervalo);
             }
             else if (event.key === "ArrowRight") {
-                this.getUbicacion();
                 this.intervalo = setInterval(() => {
                     this.posicionX += this.velocidad;
                     this.actualizarPosicion();
+                    alMoverse(this.intervalo);
                 }, this.velovidadIntervalo);
             }
         });
@@ -62,7 +62,9 @@ export class Jugador {
         let ubicacionJugador = this.divJugador.getBoundingClientRect();
         console.log(`Left: ${ubicacionJugador.left}, Right:${ubicacionJugador.right} , Bottom: ${ubicacionJugador.bottom}, Top: ${ubicacionJugador.top}`);
     }
-    setReseteoPosicion(x, y) {
-        this.divJugador.style.transform = `translate(${x + "px"},${y + "px"})`;
+    setPosicionInicial(x, y) {
+        this.posicionX = x;
+        this.posicionY = y;
+        this.actualizarPosicion();
     }
 }

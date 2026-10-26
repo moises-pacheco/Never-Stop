@@ -38,6 +38,11 @@
     background: rgb(255, 64, 0);
 }
 
+.meta{
+    position: absolute;
+    background: rgb(179, 255, 0);
+}
+
 
 /* PERSONAJE */
 

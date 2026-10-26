@@ -4,6 +4,8 @@ interface Mapa {
     inicio: Inicio
 }
 
+type niveles = "Primer laberinto" | "Segundo laberinto" | "Tercer laberinto"
+
 interface Laberintos {
     laberintos: Mapa[]
 }
@@ -14,20 +16,23 @@ interface Inicio {
 }
 
 export class CargarMapa {
-    private url: string;
-    constructor(url: string) {
-        this.url = url;
+    private nivelSeleccionado: niveles;
+    constructor(){
+        this.nivelSeleccionado = "Primer laberinto";
     };
-
     async cargarMapa() {
-        const respuesta = await fetch(this.url);
+        const respuesta = await fetch("../src/laberintos/laberintos.json");
         if (!respuesta.ok) {
             throw new Error("No se ha podido cargar el mapa.");
         }
 
         const laberintos = (await respuesta.json() as Laberintos).laberintos;
-        const mapa = laberintos.find((m) => m.nombre === "Primer laberinto");
+        const mapa = laberintos.find((m) => m.nombre === this.nivelSeleccionado);
         return mapa;
+    }
+
+    setNivelSeleccionado(nivel:niveles){
+        this.nivelSeleccionado = nivel;
     }
 
 }

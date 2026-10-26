@@ -7,10 +7,10 @@ export class Jugador {
     private posicionY: number;
     private intervalo: number | undefined;
 
-    constructor(x: number, y: number) {
+    constructor() {
         this.velovidadIntervalo = 75;
-        this.posicionX = x;
-        this.posicionY = y;
+        this.posicionX = 0;
+        this.posicionY = 0;
         this.velocidad = 20;
 
 
@@ -19,7 +19,7 @@ export class Jugador {
         this.actualizarPosicion();
     }
 
-    detectarTecla() {
+    detectarTecla(alMoverse: (intervalo:number) => void) {
         document.addEventListener("keydown", (event) => {
             if (event.repeat) return;
             if (!event.key.startsWith("Arrow")) return;
@@ -27,40 +27,40 @@ export class Jugador {
             event.preventDefault();
             clearInterval(this.intervalo);
             if (event.key === "ArrowUp") {
-                this.getUbicacion();
 
                 this.intervalo = setInterval(() => {
                     this.posicionY -= this.velocidad;
 
                     this.actualizarPosicion();
+                    alMoverse(this.intervalo!);
 
                 }, this.velovidadIntervalo)
 
             } else if (event.key === "ArrowDown") {
-                this.getUbicacion();
                 this.intervalo = setInterval(() => {
                     this.posicionY += this.velocidad;
                     this.actualizarPosicion();
+                    alMoverse(this.intervalo!);
 
 
                 }, this.velovidadIntervalo)
             } else if (event.key === "ArrowLeft") {
-                this.getUbicacion();
 
 
                 this.intervalo = setInterval(() => {
                     this.posicionX -= this.velocidad;
                     this.actualizarPosicion();
+                    alMoverse(this.intervalo!);
 
                 }, this.velovidadIntervalo)
 
             } else if (event.key === "ArrowRight") {
 
-                this.getUbicacion();
 
                 this.intervalo = setInterval(() => {
                     this.posicionX += this.velocidad;
                     this.actualizarPosicion();
+                    alMoverse(this.intervalo!);
 
                 }, this.velovidadIntervalo)
 
@@ -85,8 +85,10 @@ export class Jugador {
     }
 
 
-    setReseteoPosicion(x: number, y: number) {
-        this.divJugador.style.transform = `translate(${x + "px"},${y + "px"})`
+    setPosicionInicial(x: number, y: number) {
+        this.posicionX = x;
+        this.posicionY = y;
+        this.actualizarPosicion();
     }
 
 }
