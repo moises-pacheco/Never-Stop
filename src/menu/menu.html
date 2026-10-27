@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Laberinto Del Terror</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="imagenes/cara-de-calabaza.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Nosifer&family=VT323&display=swap"
+        rel="stylesheet">
+    <script src="./script.js" defer></script>
+
+</head>
+
+<body>
+
+    <div class="menu-opciones">
+        <h1>NEVER STOP</h1>
+        <div>
+            <ul class="menu_list">
+                <li><a href="/index.html">EMPEZAR JUEGO</a></li>
+                <li><a href="#" id="btnComoJugar">COMO JUGAR</a></li>
+                <li><a href="#" id="btnCreditos">CREDITOS</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div id="pantalla_creditos" class="pantalla_oscura">
+        <div class="caja_creditos">
+            <h2>CRÉDITOS</h2>
+            <div class="bloque_fotos">
+                <img src="imagenes/imagen_laberinto.png">
+                <img src="imagenes/imagen_laberinto.png">
+                <img src="imagenes/imagen_laberinto.png">
+                <img src="imagenes/imagen_laberinto.png">
+            </div>
+            <p>Creadores del videojuego</p>
+            <a href="#" id="cerrar_creditos" class="caja_cerrar">VOLVER</a>
+        </div>
+    </div>
+
+
+
+    <div id="pantalla_comoJugar" class="pantalla_oscura">
+        <div class="caja_comoJugar">
+            <h2>COMO JUGAR</h2>
+            <p class="regla"><span class="numero">1</span> Pulsa una flecha y el punto empieza a moverse.</p>
+            <p class="regla"><span class="numero">2</span> No hace falta mantenerla pulsada: el punto avanza solo.</p>
+            <p class="regla"><span class="numero">3</span> Pulsa otra flecha para cambiar de dirección.</p>
+            <p class="regla"><span class="numero">4</span> El movimiento es constante y nunca se detiene.</p>
+
+            <a href="#" id="cerrar_comoJugar" class="caja_cerrar">VOLVER</a>
+
+            <img src="imagenes/flechas_teclado.png">
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

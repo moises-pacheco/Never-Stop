@@ -1,0 +1,245 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    justify-content: center;
+
+}
+
+h1 {
+    text-align: left;
+    font-size: 100px;
+    color: #f3d9ff;
+    font-family: "VT323";
+    max-width: 850px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 5px #ff937b,
+        0 0 15px #f66a29,
+        0 0 30px #f65c29,
+        0 0 60px #c45612,
+        0 0 100px #5c1f0a;
+
+    animation: tetrico-flicker 3s infinite alternate;
+}
+
+@keyframes tetrico-flicker {
+
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+        text-shadow:
+            0 0 5px #ff937b,
+            0 0 15px #f66a29,
+            0 0 30px #f65c29,
+            0 0 60px #c45612,
+            0 0 100px #5c1f0a;
+        opacity: 1;
+    }
+
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+        opacity: 0.4;
+    }
+}
+
+
+.menu-opciones{
+    margin: 8em;
+}
+
+.menu_list {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    margin: 0;
+    padding: 0;
+
+}
+
+
+li {
+    list-style-type: none;
+    height: 50px;
+    width: 250px;
+    text-align: left;
+    font-size: 15px;
+    border-radius: 15px;
+
+
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+}
+
+
+
+li:hover {
+    transform: scale(1.08);
+}
+
+li:hover a {
+    color: white;
+    text-shadow: 0 0 10px white, 0 0 20px #e07bff;
+}
+
+
+/* Capa oscura que cubre toda la pantalla (oculta por defecto) */
+.pantalla_oscura {
+    position: fixed;
+    /*Esto es para dejarlo fijo*/
+    inset: 0;
+    /*Esto hace que se estire a todas las esquinas de la pantalla */
+    background: rgba(0, 0, 0, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    /* OPACIDAD POR DEFECTO 0*/
+    visibility: hidden;
+    /*ESCONDIDO POR DEFECTO ASTA ACTIVAR*/
+    transition: opacity 0.4s, visibility 0.4s;
+}
+
+
+.pantalla_oscura.activa {
+    opacity: 1;
+    /*CUANDO ESTA ACTIVA SE PONE PANTALLA NEGRA*/
+    visibility: visible;
+    /*REVELAMOS LA TARJETA*/
+}
+
+.caja_comoJugar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+    ;
+    height: 900px;
+    background-color: rgba(37, 39, 40, 0.123);
+}
+
+a {
+    width: 30%;
+    padding: 12px;
+    text-decoration: none;
+    font-family: 'Press Start 2P';
+    letter-spacing: 2px;
+    color: #d9d5dc;
+    text-shadow: 0 0 6px #a490ab;
+}
+
+.regla {
+    display: flex;
+    gap: 12px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.numero {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #e07bff;
+    border-radius: 50%;
+    color: #f3d9ff;
+    background: #3d0a5c;
+    box-shadow: 0 0 8px #c529f6;
+}
+
+.pantalla_oscura.activa .caja_creditos,
+.pantalla_oscura.activa .caja_comoJugar {
+    transform: scale(1);
+}
+
+.caja_creditos h2,
+.caja_comoJugar h2 {
+    text-align: center;
+    font-family: "VT323";
+    font-size: 60px;
+    color: #e8daef;
+    text-shadow: 0 0 8px #e07bff, 0 0 20px #c529f6, 0 0 40px #8a12c4;
+    margin: 0 0 20px;
+}
+
+.caja_creditos p,
+.caja_comoJugar p {
+    font-family: 'Press Start 2P';
+    font-size: 23px;
+    line-height: 1.6;
+    color: #ddd6e0;
+}
+
+.caja_cerrar {
+    margin-top: 20px;
+    border: 3px solid #8a12c4;
+    border-radius: 15px;
+    font-size: 18px;
+    color: rgb(237, 207, 255);
+    background: radial-gradient(#3d0a5c, black);
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.caja_cerrar:hover {
+    border-color: #e07bff;
+    box-shadow: 0 0 15px #c529f6, inset 0 0 8px #8a12c4;
+}
+
+.caja_comoJugar a {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.caja_creditos {
+    width: 500px;
+    height: 500px;
+
+}
+
+.bloque_fotos {
+    justify-content: center;
+    display: flex;
+    gap: 30px;
+    padding: 50px;
+
+}
+
+.bloque_fotos img {
+    width: 100px;
+    height: 100px;
+
+
+}
+
+.caja_creditos a {
+    display: block;
+    margin: auto;
+    text-align: center;
+    width: 150px;
+}
+
+.caja_creditos h2 {
+    font-size: 80px;
+}

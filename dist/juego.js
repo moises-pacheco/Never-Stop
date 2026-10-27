@@ -32,15 +32,28 @@ export async function iniciarJuego(jugador, laberinto, cargadorMapa) {
             jugador.setPosicionInicial(mapa.inicio.x, mapa.inicio.y);
         }
         if (llegaMeta) {
-            contadorNiveles++; //Sumas al llegar a la meta;
-            gestorNiveles.nivel = nivelesLaberinto[contadorNiveles]; //Cambia a la siguiente posición del array
-            console.log("PASÓ");
-            console.log(gestorNiveles.nivel);
-            cargadorMapa.setNivelSeleccionado(gestorNiveles.nivel); // Buscas el nuevo mapa.
-            mapa = await cargadorMapa.cargarMapa(); //Obtienes el nuevo mapa.
-            laberinto.cambiarMapa(mapa.mapa);
-            jugador.setPosicionInicial(mapa.inicio.x, mapa.inicio.y);
-            laberinto.getDivLaberinto().appendChild(jugador.getDivJugador());
+            if (gestorNiveles.nivel !== "Cuarto laberinto") {
+                contadorNiveles++; //Sumas al llegar a la meta;
+                gestorNiveles.nivel = nivelesLaberinto[contadorNiveles]; //Cambia a la siguiente posición del array
+                cargadorMapa.setNivelSeleccionado(gestorNiveles.nivel); // Buscas el nuevo mapa.
+                mapa = await cargadorMapa.cargarMapa(); //Obtienes el nuevo mapa.
+                laberinto.cambiarMapa(mapa.mapa);
+                jugador.setPosicionInicial(mapa.inicio.x, mapa.inicio.y);
+                laberinto.getDivLaberinto().appendChild(jugador.getDivJugador());
+            }
+            else {
+                laberinto.eliminarMapa();
+            }
         }
     }
+}
+// CUANDO EL JUGADOR LLEGUE A LA META, LANZAR EL JUMSCARE.
+// ESTOY TRABAJANDO EN ELLO
+export function susto(body) {
+    console.log("entra");
+    body.style.background = "url(./src/imagenes/juon.avif)";
+    body.style.backgroundRepeat = "no-repeat";
+    body.style.backgroundSize = "cover";
+}
+function cambiarParrafoNivel() {
 }

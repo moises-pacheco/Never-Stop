@@ -8,10 +8,10 @@ export class Jugador {
     private intervalo: number | undefined;
 
     constructor() {
-        this.velovidadIntervalo = 90;
+        this.velovidadIntervalo = 80;
         this.posicionX = 0;
         this.posicionY = 0;
-        this.velocidad = 20;
+        this.velocidad = 15;
 
 
         this.divJugador = document.createElement("div");
