@@ -8,5 +8,4 @@ document.addEventListener("DOMContentLoaded", async () => {
         const cargadorMapa = new CargarMapa(); //Inicializa el loader
         const laberinto = new Laberinto(); //Crea el alberinto
         const jugador = new Jugador(); // Crea al jugador
-        iniciarJuego(jugador, laberinto, cargadorMapa); // Iniciar juego
 })

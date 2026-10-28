@@ -104,9 +104,9 @@ li:hover a {
 
 /* Capa oscura que cubre toda la pantalla (oculta por defecto) */
 .pantalla_oscura {
-    position: fixed;
-    /*Esto es para dejarlo fijo*/
-    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
     /*Esto hace que se estire a todas las esquinas de la pantalla */
     background: rgba(0, 0, 0, 1);
     display: flex;
@@ -132,10 +132,8 @@ li:hover a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 600px;
-    ;
-    height: 900px;
     background-color: rgba(37, 39, 40, 0.123);
+    text-align: justify;
 }
 
 a {
@@ -161,11 +159,11 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #e07bff;
+    border: 2px solid #f66a29;
     border-radius: 50%;
     color: #f3d9ff;
-    background: #3d0a5c;
-    box-shadow: 0 0 8px #c529f6;
+    background: #f66a29;
+    box-shadow: 0 0 8px #f66a29;
 }
 
 .pantalla_oscura.activa .caja_creditos,
@@ -179,7 +177,7 @@ a {
     font-family: "VT323";
     font-size: 60px;
     color: #e8daef;
-    text-shadow: 0 0 8px #e07bff, 0 0 20px #c529f6, 0 0 40px #8a12c4;
+    text-shadow: 0 0 8px #f66a29, 0 0 20px #f66a29, 0 0 40px #f66a29;
     margin: 0 0 20px;
 }
 
@@ -193,17 +191,17 @@ a {
 
 .caja_cerrar {
     margin-top: 20px;
-    border: 3px solid #8a12c4;
+    border: 3px solid #f66a29;
     border-radius: 15px;
     font-size: 18px;
     color: rgb(237, 207, 255);
-    background: radial-gradient(#3d0a5c, black);
+    background: radial-gradient(#f66a29, black);
     transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .caja_cerrar:hover {
-    border-color: #e07bff;
-    box-shadow: 0 0 15px #c529f6, inset 0 0 8px #8a12c4;
+    border-color: #f66a29;
+    box-shadow: 0 0 15px #f66a29, inset 0 0 8px #f66a29;
 }
 
 .caja_comoJugar a {
@@ -213,17 +211,20 @@ a {
 }
 
 .caja_creditos {
-    width: 500px;
-    height: 500px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 
 }
 
 .bloque_fotos {
     justify-content: center;
+    flex-direction: column;
     display: flex;
-    gap: 30px;
-    padding: 50px;
-
 }
 
 .bloque_fotos img {
@@ -235,7 +236,7 @@ a {
 
 .caja_creditos a {
     display: block;
-    margin: auto;
+    /* margin: auto; */
     text-align: center;
     width: 150px;
 }
