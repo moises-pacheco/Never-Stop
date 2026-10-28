@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="/src/styles/index.css">
 </head>
 
-<body id="body">
+<body>
+    <audio src="./src/sfx/8bit.opus" type="audio/mpeg" id="music"></audio>
+    <audio src="" type="audio/mpeg" id="sfx"></audio>
     <div class="contenedor-laberinto" id="contenedor">
         <div class="titulo-nivel">
-            <p class="niveles">Primer nivel</p>
-            <p class="cronometro">Tiempo restante: 00:00</p>
+            <p class="niveles" id="niveles">Primer nivel</p>
+            <p class="cronometro" id="cronometro">Tiempo restante: 01:30</p>
         </div>
         <div class="laberinto" id="laberinto"></div>
     </div>

@@ -11,7 +11,7 @@ export class Jugador {
         this.velovidadIntervalo = 80;
         this.posicionX = 0;
         this.posicionY = 0;
-        this.velocidad = 15;
+        this.velocidad = 17;
 
 
         this.divJugador = document.createElement("div");

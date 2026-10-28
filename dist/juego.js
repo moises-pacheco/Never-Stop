@@ -1,10 +1,20 @@
+/* OBTENER ELEMENTOS HTML */
+const divContenedor = document.getElementById("contenedor");
+const parrafoNiveles = document.getElementById("niveles");
+const parrafoCronometro = document.getElementById("cronometro");
+const sfx = document.getElementById("sfx");
+const musica = document.getElementById("music");
 // Gestor de los niveles.
 const nivelesLaberinto = ["Primer laberinto", "Segundo laberinto", "Tercer laberinto", "Cuarto laberinto"];
 const gestorNiveles = {
     nivel: "Primer laberinto"
 };
 let contadorNiveles = 0;
+// INTERVALO DEL CRONOMETRO
+let intervalo = 0;
 export async function iniciarJuego(jugador, laberinto, cargadorMapa) {
+    //EMPIEZA LA MÚSICA
+    musicaFondo();
     //CARGA EL MAPA
     let mapa = await cargadorMapa.cargarMapa();
     //ASIGNA LA MATRIZ AL LABERINTO
@@ -17,6 +27,8 @@ export async function iniciarJuego(jugador, laberinto, cargadorMapa) {
     jugador.setPosicionInicial(mapa.inicio.x, mapa.inicio.y);
     //PERMITE MOVERSE AL JGUADOR.
     jugador.detectarTecla(detectarColision);
+    //EMPIEZA CRONOMETRO
+    cronometro();
     async function detectarColision(intervalo) {
         let ubicacionJugador = jugador.getDivJugador().getBoundingClientRect(); // Obtiene la ubicación del jugador.
         const colisiona = laberinto.getParedLimites().some((pared) => ubicacionJugador.left < pared.right
@@ -28,11 +40,15 @@ export async function iniciarJuego(jugador, laberinto, cargadorMapa) {
             && ubicacionJugador.top < meta.bottom
             && ubicacionJugador.bottom > meta.top);
         if (colisiona) {
+            colision();
             clearInterval(intervalo);
             jugador.setPosicionInicial(mapa.inicio.x, mapa.inicio.y);
+            //ACTUALIZA EL PARRAFO DEL NIVEL
+            cambiarParrafoNivel(mapa.nombre);
         }
         if (llegaMeta) {
             if (gestorNiveles.nivel !== "Cuarto laberinto") {
+                meta();
                 contadorNiveles++; //Sumas al llegar a la meta;
                 gestorNiveles.nivel = nivelesLaberinto[contadorNiveles]; //Cambia a la siguiente posición del array
                 cargadorMapa.setNivelSeleccionado(gestorNiveles.nivel); // Buscas el nuevo mapa.
@@ -47,13 +63,63 @@ export async function iniciarJuego(jugador, laberinto, cargadorMapa) {
         }
     }
 }
-// CUANDO EL JUGADOR LLEGUE A LA META, LANZAR EL JUMSCARE.
-// ESTOY TRABAJANDO EN ELLO
-export function susto(body) {
-    console.log("entra");
-    body.style.background = "url(./src/imagenes/juon.avif)";
-    body.style.backgroundRepeat = "no-repeat";
-    body.style.backgroundSize = "cover";
+function cronometro() {
+    /* INICIALIZAMOS LAS VARIABLES QUE UTILIZAREMOS */
+    let tiempoInicial = 10;
+    let minutos;
+    let segundos;
+    //Corre el intervalo.
+    intervalo = setInterval(() => {
+        //Verificamos si el tiempo no ha llegado a 0
+        if (tiempoInicial <= 0) {
+            detenerTiempo(intervalo);
+        }
+        else {
+            tiempoInicial--;
+            console.log(tiempoInicial);
+            actualizarTiempo();
+        }
+    }, 1000);
+    function actualizarTiempo() {
+        minutos = Math.floor(tiempoInicial / 60);
+        segundos = tiempoInicial % 60;
+        parrafoCronometro.textContent = `Tiempo restante: ${String(minutos).padStart(2, "0")}: ${String(segundos).padStart(2, "0")}`;
+    }
+    function detenerTiempo(intervalo) {
+        clearInterval(intervalo);
+    }
 }
-function cambiarParrafoNivel() {
+function musicaFondo() {
+    musica.volume = 0.010;
+    musica.play();
+}
+function colision() {
+    efectoDanio();
+    sfx.src = "../src/sfx/sfx_colision.mp3";
+    sfx.play();
+}
+function meta() {
+    efectoVictoria();
+    sfx.src = "../src/sfx/sfx_victory.mp3";
+    sfx.play();
+}
+function jumpScare() {
+    divContenedor.style.background = "url(../src/imagenes/juon.avif)";
+    divContenedor.style.backgroundRepeat = "no-repeat";
+    divContenedor.style.backgroundSize = "cover";
+}
+function cambiarParrafoNivel(parrafoNivel) {
+    parrafoNiveles.textContent = parrafoNivel;
+}
+function efectoDanio() {
+    divContenedor.style.background = "#390e0e";
+    setTimeout(() => {
+        divContenedor.style.background = "black";
+    }, 200);
+}
+function efectoVictoria() {
+    divContenedor.style.background = "#0e320d";
+    setTimeout(() => {
+        divContenedor.style.background = "black";
+    }, 200);
 }

@@ -27,6 +27,7 @@
     background: black;
     background-repeat: no-repeat;
     background-size: cover;
+    transition: .1s ease-in-out;
 }
 
 .laberinto{
