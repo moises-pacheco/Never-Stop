@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -7,19 +7,19 @@
 
 /* LABERINTO */
 
-.titulo-nivel{
+.titulo-nivel {
     display: flex;
     flex-direction: column;
     text-align: center;
     justify-content: center;
-    color:white;
+    color: white;
     font-size: 2em;
     margin: .4em;
 }
 
 
-.contenedor-laberinto{
-    height: 100vh;    
+.contenedor-laberinto {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,16 +30,16 @@
     transition: .1s ease-in-out;
 }
 
-.laberinto{
+.laberinto {
     position: relative;
 }
 
-.pared{
+.pared {
     position: absolute;
     background: rgb(255, 64, 0);
 }
 
-.meta{
+.meta {
     position: absolute;
     background: rgb(179, 255, 0);
 }
@@ -47,7 +47,7 @@
 
 /* PERSONAJE */
 
-.personaje{
+.personaje {
     position: absolute;
     width: .8em;
     height: .8em;
@@ -59,7 +59,7 @@
 
 
 
-.div{
+.div {
     transform: translate(x, y);
 }
 
@@ -67,7 +67,8 @@
 
 /* PANTALLAS CINEMÁTICAS */
 
-.pantalla{
+.pantalla {
+    position: absolute;
     z-index: 10;
     width: 100vw;
     height: 100vh;
@@ -76,19 +77,29 @@
     align-items: center;
     justify-content: center;
     background-color: black;
-
 }
 
-.pantalla video{
-    height: 35em;
+.p-b {
+    padding: 1em;
+    margin-top: 20px;
+    border: 3px solid #f66a29;
+    border-radius: 15px;
+    font-size: 18px;
+    color: rgb(237, 207, 255);
+    background: radial-gradient(#f66a29, black);
+    transition: box-shadow 0.2s, border-color 0.2s;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.oculta{
+
+
+.oculta {
     overflow: hidden;
     opacity: 0;
 }
 
-.mostrar{
+.mostrar {
     overflow: visible;
     opacity: 1;
 }

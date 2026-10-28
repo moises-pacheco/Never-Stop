@@ -9,7 +9,9 @@ const parrafoCronometro = document.getElementById("cronometro");
 const sfx = document.getElementById("sfx") as HTMLAudioElement;
 const musica = document.getElementById("music") as HTMLAudioElement;
 
+/* pantalla */
 
+const pantallaFinal
 
 
 // Gestor de los niveles.
