@@ -67,6 +67,9 @@ h1 {
 .menu-opciones{
     display: flex;
     margin: 8em;
+    width: calc(100% - 16em);
+    align-items: center;
+    justify-content: space-between;
 }
 
 .menu_list {
@@ -247,7 +250,14 @@ a {
 }
 
 .imgLaberinto{
-    height: 200px;
+    height: 400px;
+    margin-right: 4em;
+}
+
+.imagen-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .opciones-seleccionables{
