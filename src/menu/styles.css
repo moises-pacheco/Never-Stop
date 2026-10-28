@@ -65,6 +65,7 @@ h1 {
 
 
 .menu-opciones{
+    display: flex;
     margin: 8em;
 }
 
@@ -243,4 +244,13 @@ a {
 
 .caja_creditos h2 {
     font-size: 80px;
+}
+
+.imgLaberinto{
+    height: 200px;
+}
+
+.opciones-seleccionables{
+    display: flex;
+    flex-direction: column;
 }

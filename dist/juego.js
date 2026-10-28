@@ -4,6 +4,7 @@ const parrafoNiveles = document.getElementById("niveles");
 const parrafoCronometro = document.getElementById("cronometro");
 const sfx = document.getElementById("sfx");
 const musica = document.getElementById("music");
+const pantallaFinal = document.getElementById("pantalla-final");
 // Gestor de los niveles.
 const nivelesLaberinto = ["Primer laberinto", "Segundo laberinto", "Tercer laberinto", "Cuarto laberinto"];
 const gestorNiveles = {
@@ -58,6 +59,9 @@ export async function iniciarJuego(jugador, laberinto, cargadorMapa) {
                 laberinto.getDivLaberinto().appendChild(jugador.getDivJugador());
             }
             else {
+                clearInterval(intervalo);
+                meta();
+                finalizarJuego("Has escapado del laberinto", "./src/imagenes/puerta.png");
                 laberinto.eliminarMapa();
             }
         }
@@ -65,19 +69,15 @@ export async function iniciarJuego(jugador, laberinto, cargadorMapa) {
 }
 function cronometro() {
     /* INICIALIZAMOS LAS VARIABLES QUE UTILIZAREMOS */
-    let tiempoInicial = 10;
+    let tiempoInicial = 90;
     let minutos;
     let segundos;
     //Corre el intervalo.
     intervalo = setInterval(() => {
-        //Verificamos si el tiempo no ha llegado a 0
+        tiempoInicial--;
+        actualizarTiempo();
         if (tiempoInicial <= 0) {
-            detenerTiempo(intervalo);
-        }
-        else {
-            tiempoInicial--;
-            console.log(tiempoInicial);
-            actualizarTiempo();
+            finalizarJuego("No has conseguido escapar del laberinto", "./src/imagenes/jason2.png");
         }
     }, 1000);
     function actualizarTiempo() {
@@ -85,13 +85,30 @@ function cronometro() {
         segundos = tiempoInicial % 60;
         parrafoCronometro.textContent = `Tiempo restante: ${String(minutos).padStart(2, "0")}: ${String(segundos).padStart(2, "0")}`;
     }
-    function detenerTiempo(intervalo) {
-        clearInterval(intervalo);
+}
+function finalizarJuego(mensaje, url) {
+    clearInterval(intervalo);
+    detenerMusica();
+    if (!pantallaFinal) {
+        throw new Error('No se encontró el elemento con id "pantalla-final".');
     }
+    const parrafoFinal = pantallaFinal.querySelector("p");
+    if (!parrafoFinal) {
+        throw new Error('No se encontró un párrafo dentro de "pantalla-final".');
+    }
+    const imagenFinal = pantallaFinal.querySelector(".imgPantallaFinal");
+    imagenFinal.src = url;
+    parrafoFinal.textContent = mensaje;
+    pantallaFinal.classList.remove("oculta");
+    pantallaFinal.classList.add("mostrar");
 }
 function musicaFondo() {
     musica.volume = 0.010;
     musica.play();
+}
+function detenerMusica() {
+    musica.pause();
+    musica.currentTime = 0;
 }
 function colision() {
     efectoDanio();

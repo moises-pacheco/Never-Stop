@@ -84,7 +84,7 @@
     margin-top: 20px;
     border: 3px solid #f66a29;
     border-radius: 15px;
-    font-size: 18px;
+    font-size: 14px;
     color: rgb(237, 207, 255);
     background: radial-gradient(#f66a29, black);
     transition: box-shadow 0.2s, border-color 0.2s;
@@ -92,6 +92,9 @@
     cursor: pointer;
 }
 
+.parrafo-pantalla-oculta{
+    color: white;
+}
 
 
 .oculta {
@@ -102,4 +105,8 @@
 .mostrar {
     overflow: visible;
     opacity: 1;
+}
+
+.imgPantallaFinal{
+    height: 200px;
 }

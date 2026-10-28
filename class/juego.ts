@@ -8,10 +8,8 @@ const parrafoNiveles = document.getElementById("niveles");
 const parrafoCronometro = document.getElementById("cronometro");
 const sfx = document.getElementById("sfx") as HTMLAudioElement;
 const musica = document.getElementById("music") as HTMLAudioElement;
+const pantallaFinal = document.getElementById("pantalla-final");
 
-/* pantalla */
-
-const pantallaFinal
 
 
 // Gestor de los niveles.
@@ -83,6 +81,9 @@ export async function iniciarJuego(jugador: Jugador, laberinto: Laberinto, carga
                 jugador.setPosicionInicial(mapa!.inicio.x, mapa!.inicio.y);
                 laberinto.getDivLaberinto().appendChild(jugador.getDivJugador());
             } else {
+                clearInterval(intervalo);
+                meta();
+                finalizarJuego("Has escapado del laberinto", "./src/imagenes/puerta.png");
                 laberinto.eliminarMapa();
             }
         }
@@ -93,19 +94,17 @@ export async function iniciarJuego(jugador: Jugador, laberinto: Laberinto, carga
 
 function cronometro() {
     /* INICIALIZAMOS LAS VARIABLES QUE UTILIZAREMOS */
-    let tiempoInicial: number = 10;
+    let tiempoInicial: number = 90;
     let minutos: number | undefined;
     let segundos: number | undefined;
 
     //Corre el intervalo.
     intervalo = setInterval(() => {
-        //Verificamos si el tiempo no ha llegado a 0
+        tiempoInicial--;
+        actualizarTiempo();
+
         if (tiempoInicial <= 0) {
-            detenerTiempo(intervalo);
-        } else {
-            tiempoInicial--;
-            console.log(tiempoInicial);
-            actualizarTiempo();
+            finalizarJuego("No has conseguido escapar del laberinto", "./src/imagenes/jason2.png");
         }
     }, 1000)
 
@@ -115,15 +114,36 @@ function cronometro() {
         parrafoCronometro!.textContent = `Tiempo restante: ${String(minutos).padStart(2, "0")}: ${String(segundos).padStart(2, "0")}`;
     }
 
-    function detenerTiempo(intervalo: number) {
-        clearInterval(intervalo);
+}
+
+function finalizarJuego(mensaje: string, url:string) {
+    clearInterval(intervalo);
+    detenerMusica();
+    if (!pantallaFinal) {
+        throw new Error('No se encontró el elemento con id "pantalla-final".');
     }
+    const parrafoFinal = pantallaFinal.querySelector("p");
+    if (!parrafoFinal) {
+        throw new Error('No se encontró un párrafo dentro de "pantalla-final".');
+    }
+
+    const imagenFinal = pantallaFinal.querySelector(".imgPantallaFinal") as HTMLImageElement;
+
+    imagenFinal.src = url;
+    parrafoFinal.textContent = mensaje;
+    pantallaFinal.classList.remove("oculta");
+    pantallaFinal.classList.add("mostrar");
 }
 
 
 function musicaFondo() {
     musica.volume = 0.010;
     musica.play();
+}
+
+function detenerMusica() {
+    musica.pause();
+    musica.currentTime = 0;
 }
 
 function colision() {
@@ -164,5 +184,3 @@ function efectoVictoria() {
         divContenedor!.style.background = "black";
     }, 200)
 }
-
-
