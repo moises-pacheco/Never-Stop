@@ -1,0 +1,112 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/* LABERINTO */
+
+.titulo-nivel {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-size: 2em;
+    margin: .4em;
+}
+
+
+.contenedor-laberinto {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: .1s ease-in-out;
+}
+
+.laberinto {
+    position: relative;
+}
+
+.pared {
+    position: absolute;
+    background: rgb(255, 64, 0);
+}
+
+.meta {
+    position: absolute;
+    background: rgb(179, 255, 0);
+}
+
+
+/* PERSONAJE */
+
+.personaje {
+    position: absolute;
+    width: .8em;
+    height: .8em;
+    border-radius: 100%;
+    background-color: yellow;
+    transition: transform 75ms linear;
+
+}
+
+
+
+.div {
+    transform: translate(x, y);
+}
+
+
+
+/* PANTALLAS CINEMÁTICAS */
+
+.pantalla {
+    position: absolute;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.p-b {
+    padding: 1em;
+    margin-top: 20px;
+    border: 3px solid #f66a29;
+    border-radius: 15px;
+    font-size: 14px;
+    color: rgb(237, 207, 255);
+    background: radial-gradient(#f66a29, black);
+    transition: box-shadow 0.2s, border-color 0.2s;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.parrafo-pantalla-oculta{
+    color: white;
+}
+
+
+.oculta {
+    overflow: hidden;
+    opacity: 0;
+}
+
+.mostrar {
+    overflow: visible;
+    opacity: 1;
+}
+
+.imgPantallaFinal{
+    height: 200px;
+}

@@ -5,7 +5,7 @@ export class CargarMapa {
     }
     ;
     async cargarMapa() {
-        const respuesta = await fetch("../src/laberintos/laberintos.json");
+        const respuesta = await fetch("/src/laberintos/laberintos.json");
         if (!respuesta.ok) {
             throw new Error("No se ha podido cargar el mapa.");
         }

@@ -61,7 +61,7 @@ export async function iniciarJuego(jugador, laberinto, cargadorMapa) {
             else {
                 clearInterval(intervalo);
                 meta();
-                finalizarJuego("Has escapado del laberinto", "./src/imagenes/puerta.png");
+                finalizarJuego("Has escapado del laberinto", "/src/imagenes/puerta.png");
                 laberinto.eliminarMapa();
             }
         }
@@ -77,7 +77,7 @@ function cronometro() {
         tiempoInicial--;
         actualizarTiempo();
         if (tiempoInicial <= 0) {
-            finalizarJuego("No has conseguido escapar del laberinto", "./src/imagenes/jason2.png");
+            finalizarJuego("No has conseguido escapar del laberinto", "/src/imagenes/jason2.png");
         }
     }, 1000);
     function actualizarTiempo() {
@@ -112,19 +112,15 @@ function detenerMusica() {
 }
 function colision() {
     efectoDanio();
-    sfx.src = "../src/sfx/sfx_colision.mp3";
+    sfx.src = "/src/sfx/sfx_colision.mp3";
     sfx.play();
 }
 function meta() {
     efectoVictoria();
-    sfx.src = "../src/sfx/sfx_victory.mp3";
+    sfx.src = "/src/sfx/sfx_victory.mp3";
     sfx.play();
 }
-function jumpScare() {
-    divContenedor.style.background = "url(../src/imagenes/juon.avif)";
-    divContenedor.style.backgroundRepeat = "no-repeat";
-    divContenedor.style.backgroundSize = "cover";
-}
+
 function cambiarParrafoNivel(parrafoNivel) {
     parrafoNiveles.textContent = parrafoNivel;
 }

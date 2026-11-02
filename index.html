@@ -1,35 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laberinto</title>
+    <title>El Laberinto Del Terror</title>
     <link rel="stylesheet" href="/src/styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Nosifer&family=VT323&display=swap"
+        rel="stylesheet">
+    <script src="/src/js/index.js" defer></script>
+
 </head>
 
 <body>
-    <!-- EFECTOS DE SONIDO -->
-    <audio src="./src/sfx/8bit.opus" type="audio/mpeg" id="music"></audio>
-    <audio src="" type="audio/mpeg" id="sfx"></audio>
 
-    <div class="pantalla oculta" id="pantalla-final">
-        <img src="" alt="" class="imgPantallaFinal">
-        <p class="parrafo-pantalla-oculta"></p>
-        <a href="/src/menu/menu.html"><button class="p-b">Volver al menu</button></a>
-    </div>
-
-
-    <!-- LABERINTO -->
-    <div class="contenedor-laberinto" id="contenedor">
-        <div class="titulo-nivel">
-            <p class="niveles" id="niveles">Primer laberinto</p>
-            <p class="cronometro" id="cronometro">Tiempo restante: 01:30</p>
+    <div class="menu-opciones">
+        <div class="opciones-seleccionables">
+            <h1>NEVER STOP</h1>
+            <ul class="menu_list">
+                <li><a href="/src/paginas/juego.html">EMPEZAR JUEGO</a></li>
+                <li><a href="#" id="btnComoJugar">COMO JUGAR</a></li>
+                <li><a href="#" id="btnCreditos">CREDITOS</a></li>
+            </ul>
         </div>
-        <div class="laberinto" id="laberinto"></div>
+        <div class="imagen-menu">
+            <div class="imagen">
+                <img src="/src/imagenes/laberinto.png" alt="" class="imgLaberinto">
+            </div>
+        </div>
     </div>
 
-    <script src="/dist//main.js" type="module"></script>
+    <div id="pantalla_creditos" class="pantalla_oscura">
+        <div class="caja_creditos">
+            <h2>CRÉDITOS</h2>
+            <div class="bloque_fotos">
+                <div class="creditos-creadores">
+                    <p>Creadores:</p>
+                    <p>Moisés</p>
+                    <p>Darwin</p>
+                </div>
+                <div class="creditos-colaboradores">
+                    <p>Colaboradores:</p>
+                    <p>Hugo</p>
+                    <p>Adrían</p>
+                </div>
+            </div>
+            <a href="#" id="cerrar_creditos" class="caja_cerrar">VOLVER</a>
+        </div>
+    </div>
+
+
+
+    <div id="pantalla_comoJugar" class="pantalla_oscura">
+        <div class="caja_comoJugar">
+            <h2>COMO JUGAR</h2>
+            <p class="regla"><span class="numero">1</span> Pulsa una flecha y el punto empieza a moverse.</p>
+            <p class="regla"><span class="numero">2</span> No hace falta mantenerla pulsada: el punto avanza solo.</p>
+            <p class="regla"><span class="numero">3</span> Pulsa otra flecha para cambiar de dirección.</p>
+            <p class="regla"><span class="numero">4</span> El movimiento es constante y nunca se detiene.</p>
+
+            <a href="#" id="cerrar_comoJugar" class="caja_cerrar">VOLVER</a>
+
+
+        </div>
+    </div>
+
+
 
 </body>
 
