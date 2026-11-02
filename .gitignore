@@ -1,0 +1,5 @@
+# Dependencias de Node 
+node_modules/
+
+# Configuraciones locales de Visual Studio Code
+.vscode/
